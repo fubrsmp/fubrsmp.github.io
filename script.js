@@ -14,10 +14,11 @@ bedrockjoin.addEventListener("click", function() {
     navigator.clipboard.writeText("sources-equivalent.gl.at.ply.gg");
     bedrockjoin.textContent = "Copied!";
 });
-eaglerjoin.addEventListener("click", function() {
+eaglerplay.addEventListener("click", function() {
     navigator.clipboard.writeText("wss://infinite-suitably-gobbler.ngrok-free.app");
     eaglerjoin.textContent = "Copied!";
 });
-eaglerplay.addEventListener("click", function() {
+eaglerjoin.addEventListener("click", function() {
     window.location.href = "/client.html";
 });
+
