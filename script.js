@@ -14,5 +14,6 @@ bedrockjoin.addEventListener("click", function() {
     bedrockjoin.textContent = "Copied!";
 });
 eaglerjoin.addEventListener("click", function() {
-    window.location.href = "/client.html";
+    window.location.href = "/client/index.html";
+
 });
