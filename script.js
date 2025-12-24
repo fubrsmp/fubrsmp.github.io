@@ -1,7 +1,8 @@
 const discordjoin = document.getElementById("discordlink");
 const javajoin = document.getElementById("javaip");
 const bedrockjoin = document.getElementById("bedrockip");
-const eaglerjoin = document.getElementById("eaglercraftlink");
+const eaglerplay = document.getElementById("eaglerlink");
+const eaglerjoin = document.getElementById("eaglerip");
 discordjoin.addEventListener("click", function() {
     window.location.href = "https://discord.gg/JrvGFTauq3";
 });
@@ -14,7 +15,9 @@ bedrockjoin.addEventListener("click", function() {
     bedrockjoin.textContent = "Copied!";
 });
 eaglerjoin.addEventListener("click", function() {
-    window.location.href = "/client.html";
-
+    navigator.clipboard.writeText("wss://infinite-suitably-gobbler.ngrok-free.app");
+    eaglerjoin.textContent = "Copied!";
 });
-
+eaglerplay.addEventListener("click", function() {
+    window.location.href = "/client.html";
+});
