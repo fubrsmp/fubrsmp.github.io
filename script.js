@@ -1,8 +1,8 @@
 const discordjoin = document.getElementById("discordlink");
 const javajoin = document.getElementById("javaip");
 const bedrockjoin = document.getElementById("bedrockip");
-const eaglerplay = document.getElementById("eaglerlink");
-const eaglerjoin = document.getElementById("eaglerip");
+const eaglerplay = document.getElementById("eaglerip");
+const eaglerjoin = document.getElementById("eaglerlink");
 discordjoin.addEventListener("click", function() {
     window.location.href = "https://discord.gg/JrvGFTauq3";
 });
@@ -21,4 +21,3 @@ eaglerplay.addEventListener("click", function() {
 eaglerjoin.addEventListener("click", function() {
     window.location.href = "/client.html";
 });
-
