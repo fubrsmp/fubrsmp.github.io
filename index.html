@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="og:description" content="FuBR SMP is a free-to-play Minecraft server that can be joined through Java, Bedrock, and Eaglercraft clients." />
+    <meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.12, 1.12.2, 1.21, 1.21.10, bedrock, java, server, cracked, free-to-play" />
+    <meta property="og:locale" content="en-US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FuBR SMP" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2773977697009021" crossorigin="anonymous"></script>
+    <title>FuBR SMP || Live Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --online: #2ecc71;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0a0a0c;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 242, 255, 0.1) 0%, transparent 40%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Player Count Badge */
+        .status-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--online);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        #player-count { font-weight: 600; color: var(--online); }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .copy-card {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 30px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .copy-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .ip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 100px;
+            font-weight: 700;
+            transition: bottom 0.5s ease;
+        }
+
+        #toast.visible { bottom: 40px; }
+    </style>
+</head>
+<body>
+
+<div id="toast">COPIED TO CLIPBOARD</div>
+
+<div class="container">
+    <div class="status-wrapper">
+        <div class="pulse"></div>
+        <span id="player-count">FETCHING...</span>
+    </div>
+    
+    <h1>FuBR SMP</h1>
+
+    <div class="copy-card" onclick="copyIP('feed-penguin.gl.joinmc.link')">
+        <span class="label">Java Edition</span>
+        <div class="ip">feed-penguin.gl.joinmc.link</div>
+    </div>
+
+    <div class="copy-card" onclick="copyIP('known-ignore.gl.at.ply.gg:12803')">
+        <span class="label">Bedrock Edition</span>
+        <div class="ip">known-ignore.gl.at.ply.gg:12803</div>
+    </div>
+</div>
+
+<script>
+    // 1. Live Player Count Logic
+    async function updateStats() {
+        try {
+            // Using the Java address as the primary tracker
+            const response = await fetch('https://api.mcsrvstat.us/3/feed-penguin.gl.joinmc.link');
+            const data = await response.json();
+            
+            const countElement = document.getElementById('player-count');
+            if (data.online) {
+                countElement.innerText = `${data.players.online} PLAYERS ONLINE`;
+            } else {
+                countElement.innerText = "SERVER OFFLINE";
+                countElement.style.color = "#ff4757";
+            }
+        } catch (error) {
+            document.getElementById('player-count').innerText = "STATUS UNAVAILABLE";
+        }
+    }
+
+    // 2. Copy Function
+    function copyIP(text) {
+        navigator.clipboard.writeText(text);
+        const toast = document.getElementById('toast');
+        toast.classList.add('visible');
+        setTimeout(() => toast.classList.remove('visible'), 2500);
+    }
+
+    // Run update on load and every 60 seconds
+    updateStats();
+    setInterval(updateStats, 60000);
+</script>
+
+</body>
+</html>
