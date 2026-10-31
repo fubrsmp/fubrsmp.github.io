@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="og:description" content="FuBR SMP is a free-to-play Minecraft server that can be joined through Java, Bedrock, and Eaglercraft clients." />
+    <meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.12, 1.12.2, 1.21, 1.21.10, bedrock, java, server, cracked, free-to-play" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FuBR SMP" />
+    
+    <title>FuBR SMP || Official</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-green: #2ecc71;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0c;
+            background-image: radial-gradient(circle at 50% -20%, #1a1a2e 0%, #0a0a0c 80%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            background: linear-gradient(to bottom, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* Player Counter Badge */
+        .status-badge {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+        }
+
+        .pulse {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-green);
+        }
+
+        .cards-grid {
+            width: 100%;
+            max-width: 500px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+            position: relative;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        /* About Section */
+        .about {
+            max-width: 500px;
+            padding: 60px 20px;
+            text-align: center;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: 0.5s;
+            z-index: 999;
+        }
+
+        #toast.active { bottom: 40px; }
+
+        footer {
+            margin-top: auto;
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            color: #444;
+            text-align: center;
+        }
+
+        footer a { color: #666; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<div id="toast">COPIED!</div>
+
+<section class="hero">
+    <h1>FuBR SMP</h1>
+    <div class="status-badge">
+        <div class="pulse"></div>
+        <span><span data-playercounter-ip="mc.fubr.online">0</span> PLAYERS ONLINE</span>
+    </div>
+
+    <div class="cards-grid">
+        <!-- Java -->
+        <div class="card" onclick="copy('mc.fubr.online')">
+            <span class="label">Java IP</span>
+            <div class="value">mc.fubr.online</div>
+        </div>
+
+        <!-- Links -->
+        <div class="card">
+            <a href="https://discord.gg/Z9sHv3Ku7f" class="btn-link">Join Discord</a>
+        </div>
+        
+        <div class="card">
+            <a href="/client/index.html" class="btn-link" style="color: var(--accent-green);">Play Eaglercraft</a>
+        </div>
+    </div>
+</section>
+
+<section class="about">
+    <p>Compatible with Java and Eaglercraft. No rules. Use caution—actions have consequences. We strive for a safe, inclusive community for all.</p>
+</section>
+
+<footer>
+    <p>©2025 FuBR. Palistan. duola slrig on!</p>
+    <div style="margin-top: 10px;">
+        <a href="https://www.youtube.com/@fubrsmp">YouTube</a>
+        <a href="/client/launcher.exe">Free Java Edition</a>
+        <a href="https://app.grass.io/register?referralCode=gtqA-HceSBc1tqO">Free Crypto Mining</a>
+    </div>
+</footer>
+
+<!-- Player Counter Script -->
+<script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js"></script>
+<script>
+    function copy(text) {
+        navigator.clipboard.writeText(text);
+        const t = document.getElementById('toast');
+        t.classList.add('active');
+        setTimeout(() => t.classList.remove('active'), 2000);
+    }
+</script>
+
+</body>
+</html>
