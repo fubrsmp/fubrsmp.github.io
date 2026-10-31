@@ -4,16 +4,16 @@
  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2773977697009021"
      crossorigin="anonymous"></script>
 <meta charset="utf-8">
-<title>T-65B Flight Simulator</title>
-<meta name="description" content="Fly an X-wing T-65B in your browser: dogfight TIE fighters, take on the Death Star trench run, and play in cockpit view. Works on desktop, mobile and Google Cardboard VR. No install needed.">
+<title>Starfighter Ace: Free Space Dogfight Game</title>
+<meta name="description" content="Fly a starfighter in your browser! Dogfight enemy squadrons, dodge asteroid fields, bomb a giant warship and survive the trench run. Free to play on desktop, phone and Cardboard VR. No install.">
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="T-65B Flight Simulator">
-<meta property="og:title" content="T-65B Flight Simulator">
-<meta property="og:description" content="Fly an X-wing T-65B in your browser: dogfight TIE fighters, take on the Death Star trench run, and play in cockpit view. Works on desktop, mobile and Google Cardboard VR. No install needed.">
+<meta property="og:site_name" content="Starfighter Ace: Free Space Dogfight Game">
+<meta property="og:title" content="Starfighter Ace: Free Space Dogfight Game">
+<meta property="og:description" content="Fly a starfighter in your browser! Dogfight enemy squadrons, dodge asteroid fields, bomb a giant warship and survive the trench run. Free to play on desktop, phone and Cardboard VR. No install.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="T-65B Flight Simulator">
-<meta name="twitter:description" content="Fly an X-wing T-65B in your browser: dogfight TIE fighters, take on the Death Star trench run, and play in cockpit view. Works on desktop, mobile and Google Cardboard VR. No install needed.">
+<meta name="twitter:title" content="Starfighter Ace: Free Space Dogfight Game">
+<meta name="twitter:description" content="Fly a starfighter in your browser! Dogfight enemy squadrons, dodge asteroid fields, bomb a giant warship and survive the trench run. Free to play on desktop, phone and Cardboard VR. No install.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>
 :root{--hud:#ff9a3c;--hud2:#ffe0bd;--ink:#04060e;--panel:rgba(6,10,24,.6);--hull:#ff5a3c;--shield:#5ec8ff;--boost:#ffd23c;--foe:#ff4040;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -78,9 +78,19 @@ button.alt{background:transparent;color:var(--hud2);border:1px solid var(--hud);
 button.vrb{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));font-size:18px;padding:10px 18px;background:rgba(6,10,24,.6);color:var(--hud2);border:1px solid var(--hud);z-index:2}
 button.vrb:hover{background:var(--hud);color:#1a0d02}
 body.vr #hud{visibility:hidden}
+#menu>div{max-width:560px}
+.tabs{display:flex;gap:8px;margin:0 0 14px}
+.tabs button{font-size:18px;padding:6px 18px;background:rgba(255,154,60,.14);color:var(--hud2);border:1px solid rgba(255,154,60,.5)}
+.tabs button[aria-pressed=true]{background:var(--hud);color:#1a0d02}
+.scr p.tag{font-size:21px;max-width:520px}
+.cred h2{margin:14px 0 4px;color:var(--hud);font-size:26px}.cred p{font-size:17px;margin:0 0 6px;max-width:520px}
+button.rev{background:#5ec8ff;color:#04101a;display:block;margin:0 0 10px}button.rev:hover{background:#8bd8ff}button.rev:disabled{opacity:.6;cursor:wait}
+#over .fl{margin:0 0 14px;max-width:420px}
 
 </style>
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,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">
+<script async data-ad-client="ca-pub-2773977697009021" data-adbreak-test="on" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+<script>window.adsbygoogle=window.adsbygoogle||[];window.adBreak=window.adConfig=function(o){window.adsbygoogle.push(o)};</script>
 </head>
 <body>
 <canvas id="c"></canvas>
@@ -102,32 +112,50 @@ body.vr #hud{visibility:hidden}
  <div class="p" id="boss" hidden><div id="bt1"></div><i class="bar"><b id="bbar"></b></i><div id="bt2"></div></div><div id="imp" hidden></div><div id="prt" hidden><span id="prtl"></span></div><div id="flash"></div><div id="wflash"></div>
 </div>
 <div class="scr" id="menu"><div>
- <h1>T-65B</h1>
- <p>Fly the X-wing from the PSWG mod through a battlefield and hold off waves of TIE fighters.</p>
+ <div class="tabs"><button id="tabPlay" aria-pressed="true">Play</button><button id="tabCred" aria-pressed="false">Credits</button><button id="tabPriv" aria-pressed="false">Privacy</button></div>
+ <div id="pPlay">
+ <h1>STARFIGHTER ACE</h1>
+ <p class="tag">Strap in, pilot! Blast enemy fighters out of the sky, weave through asteroid fields and bomb a giant warship in a nail-biting trench run. Free to play. No download.</p>
  <div class="maps" id="maps"></div><p class="mapd" id="mapd"></p>
  <dl class="keys">
-  <dt>Mouse</dt><dd>Steer (cursor locks to the game, Esc releases it)</dd>
-  <dt>Arrow keys</dt><dd>Pitch and yaw</dd>
-  <dt>W / S</dt><dd>Throttle up and down</dd>
-  <dt>Q / E</dt><dd>Roll</dd>
-  <dt>A / D</dt><dd>Yaw</dd>
-  <dt>Shift</dt><dd>Boost</dd>
-  <dt>Hold Space or click</dt><dd>Auto-fire (S-foils open by themselves)</dd>
-  <dt>X</dt><dd>Lock S-foils open</dd>
-  <dt>C</dt><dd>Chase view or cockpit view</dd>
-  <dt>P</dt><dd>Pause</dd>
-  <dt>H</dt><dd>Hyperspace jump (ready after every 3 cleared waves). Something big waits at the second jump.</dd>
-  <dt>B</dt><dd>Drop ordnance (unlocks in boss battles once the fighters are down)</dd>
-  <dt>Enter</dt><dd>Skip the opening jump</dd>
+  <dt>Mouse</dt><dd>Steer your ship (Esc lets go of the mouse)</dd>
+  <dt>Space or click</dt><dd>Hold to fire. Your wings open by themselves</dd>
+  <dt>W / S</dt><dd>Go faster / slower</dd>
+  <dt>Shift</dt><dd>Turbo boost</dd>
+  <dt>A / D, Q / E</dt><dd>Turn and roll (arrow keys work too)</dd>
+  <dt>C</dt><dd>Switch between chase view and cockpit view</dd>
+  <dt>H</dt><dd>Hyperspace jump, ready after every 3 cleared waves. Something big waits at the second jump!</dd>
+  <dt>B</dt><dd>Drop a bomb in boss battles (clear the fighters first)</dd>
+  <dt>X / P</dt><dd>Lock wings open / pause</dd>
   <dt>1 to 4</dt><dd>Pick a map</dd>
  </dl>
- <button id="go">Launch</button>
+ <button id="go">Take off!</button>
+ </div>
+ <div id="pCred" class="cred" hidden>
+  <h1 style="font-size:clamp(44px,8vw,72px)">Credits</h1>
+  <h2>Game</h2><p>Created by ComputerWare. Built with plain HTML, JavaScript and WebGL. No engine, no downloads.</p>
+  <h2>Ship model, textures and sounds</h2><p>The starfighter model, textures and sound effects come from the PSWG mod (Parzi's Star Wars Mod). Huge thanks to the PSWG team for their amazing work.</p>
+  <h2>Fine print</h2><p>Fan-made game. Not affiliated with or endorsed by Lucasfilm, Disney or the PSWG team. Star Wars and related names are trademarks of Lucasfilm Ltd.</p>
+  <h2>Thanks</h2><p>Thanks for playing. See you in the trench, pilot!</p>
+ </div>
+ <div id="pPriv" class="cred" hidden>
+  <h1 style="font-size:clamp(36px,7vw,60px)">Privacy Policy</h1>
+  <h2>Advertising Information</h2>
+  <p>This game uses third-party advertising services to serve ads when you play. These third-party ad networks may collect and use pseudonymous technical information, such as your device's Advertising ID, IP address, general coarse location, and app usage data, to deliver relevant, personalized advertisements and measure ad performance.</p>
+  <p>By using this game, you consent to the collection and processing of your data by these advertising partners for personalized and non-personalized advertising purposes. You can manage or opt out of personalized ad tracking at any time through your mobile device's privacy settings (for example, "Opt out of Ads Personalization" on Android or "Allow Apps to Request to Track" on iOS).</p>
+  <p>We do not knowingly collect personal information from children under the age of 13 without verifiable parental consent.</p>
+ </div>
  <button id="vrb" class="vrb" title="Fullscreen stereo mode for Google Cardboard v2 headsets">Cardboard VR</button>
 </div></div>
 <div class="scr" id="over" hidden><div>
- <h1>Down</h1>
+ <h1>Shot down!</h1>
  <p id="sum"></p>
+ <div id="rev" hidden><button id="revive" class="rev">Watch a short ad to revive</button><p class="fl" id="revn"></p></div>
  <button id="again">Fly again</button><button id="tomenu" class="alt">Change map</button>
+</div></div>
+<div class="scr" id="adscr" hidden style="z-index:8;background:rgba(4,6,14,.97)"><div>
+ <h1 style="font-size:60px">Ad break</h1><p id="adt"></p>
+ <button id="adgo" hidden>Revive now</button><button id="adx" class="alt">Cancel</button>
 </div></div>
 <div id="err" hidden></div>
 
@@ -416,10 +444,10 @@ function zap(){if(!AC||fireB)return;const o=AC.createOscillator(),g=AC.createGai
 
 /* ---------- maps ---------- */
 const MAPS=[
-{n:'Gas giant belt',d:'Open asteroid field under a banded gas giant. Big rocks and long sight lines.',clear:[.01,.012,.03],fd:0,sun:[.8,.5,.6],sc:[1,.8,.55],star:[1,1,1],pl:'gas',pp:[-.5,-.28,-.82],ps:6000,pd:26000,ring:0,cl:[],rk:{n:80,a:14,b:104,c:[.62,.55,.48],lo:350,hi:3200,fl:1},start:[0,0,0]},
-{n:'Crimson nebula',d:'A dense rock swarm inside a red nebula. Thick haze, short visibility.',clear:[.05,.008,.03],fd:.00045,sun:[-.6,.3,.7],sc:[1,.4,.3],star:[1,.7,.85],pl:'lava',pp:[.55,-.15,-.8],ps:5000,pd:24000,ring:0,cl:[[[.2,.4,-.9],[.55,.05,.2],1.3],[[-.7,.1,-.7],[.35,.04,.3],1.1],[[.9,.2,.3],[.4,.1,.15],1]],rk:{n:130,a:10,b:70,c:[.5,.36,.42],lo:250,hi:2200,fl:1},start:[0,0,0]},
-{n:'Frozen rings',d:'Skim the ring plane of an ice giant. Lots of small, bright rocks.',clear:[.008,.02,.045],fd:0,sun:[.5,.25,-.8],sc:[.8,.9,1],star:[.85,.92,1],pl:'ice',pp:[-.35,.12,-.9],ps:7000,pd:22000,ring:1,cl:[[[.6,.5,-.6],[.04,.12,.3],1.2]],rk:{n:170,a:5,b:40,c:[.78,.88,1],lo:200,hi:2600,fl:.14},start:[0,0,0]},
-{n:'Station run',d:'Fly low over a sprawling battle station. Towers and tight lines, no asteroids.',clear:[.02,.025,.045],fd:.0022,sun:[.4,.9,.3],sc:[1,.9,.7],star:[1,1,1],pl:'gas',pp:[.6,.35,-.7],ps:5000,pd:26000,ring:0,cl:[],rk:{n:0,a:1,b:1,c:[1,1,1],lo:1,hi:2,fl:1},st:1,start:[0,230,0]}];
+{n:'Asteroid Alley',d:'Weave through huge space rocks under a giant striped planet. Wide open and perfect for your first flight.',clear:[.01,.012,.03],fd:0,sun:[.8,.5,.6],sc:[1,.8,.55],star:[1,1,1],pl:'gas',pp:[-.5,-.28,-.82],ps:6000,pd:26000,ring:0,cl:[],rk:{n:80,a:14,b:104,c:[.62,.55,.48],lo:350,hi:3200,fl:1},start:[0,0,0]},
+{n:'Crimson Storm',d:'Dive into a blood-red cloud packed with rocks. You can barely see, so trust your radar!',clear:[.05,.008,.03],fd:.00045,sun:[-.6,.3,.7],sc:[1,.4,.3],star:[1,.7,.85],pl:'lava',pp:[.55,-.15,-.8],ps:5000,pd:24000,ring:0,cl:[[[.2,.4,-.9],[.55,.05,.2],1.3],[[-.7,.1,-.7],[.35,.04,.3],1.1],[[.9,.2,.3],[.4,.1,.15],1]],rk:{n:130,a:10,b:70,c:[.5,.36,.42],lo:250,hi:2200,fl:1},start:[0,0,0]},
+{n:'Frozen Rings',d:'Skim the sparkling rings of an ice planet. Tiny icy rocks everywhere. Stay sharp!',clear:[.008,.02,.045],fd:0,sun:[.5,.25,-.8],sc:[.8,.9,1],star:[.85,.92,1],pl:'ice',pp:[-.35,.12,-.9],ps:7000,pd:22000,ring:1,cl:[[[.6,.5,-.6],[.04,.12,.3],1.2]],rk:{n:170,a:5,b:40,c:[.78,.88,1],lo:200,hi:2600,fl:.14},start:[0,0,0]},
+{n:'Station Run',d:'Zoom low over a giant space base. Dodge the towers, hug the rooftops and keep your cool.',clear:[.02,.025,.045],fd:.0022,sun:[.4,.9,.3],sc:[1,.9,.7],star:[1,1,1],pl:'gas',pp:[.6,.35,-.7],ps:5000,pd:26000,ring:0,cl:[],rk:{n:0,a:1,b:1,c:[1,1,1],lo:1,hi:2,fl:1},st:1,start:[0,230,0]}];
 function applyMap(i){curMap=i;MAP=MAPS[i];SUN=new V(...MAP.sun).norm();const k=MAP.rk;ship.p.set(...MAP.start);rocks=[];
  for(let j=0;j<k.n;j++){const r=k.a+Math.pow(rnd(),2.2)*(k.b-k.a);rocks.push({m:rockM[j%5],p:new V(),r,q:new Q(rnd()-.5,rnd()-.5,rnd()-.5,rnd()).nrm(),s:V.rand(),c:k.c})}
  rocks.forEach(r=>place(r,k.lo,k.hi));for(let j=0;j<3500;j++)for(let a=0;a<3;a++)STARS[j*7+3+a]=STARS0[j*7+3+a]*MAP.star[a];
@@ -432,19 +460,58 @@ function shoot(p,d,team,v,inh){const b={p:p.clone(),v:d.clone().mul(v).add(inh||
 function spawnWave(){const n=Math.min(2+S.wave,10);for(let i=0;i<n;i++){const d=new V((rnd()-.5)*1.6,(rnd()-.5)*.9,-1).norm().rot(ship.q).mul(650+rnd()*500),p=ship.p.clone().add(d);if(MAP.st)p.y=Math.max(p.y,120);
  foes.push({p,q:Q.fromUV(FWD,d.clone().mul(-1).norm()),hp:3,spd:105+S.wave*6,cool:2+rnd()*3,burst:0,brk:0,dir:new V(),vel:new V()})}msg('Wave '+S.wave,2200)}
 function reset(){foes.length=0;bolts.length=0;pl.fill(0);bombs.length=0;SD.length=0;DS=null;
- Object.assign(S,{jumps:0,boss:null,ord:0,hs:null,jumpReady:false,sector:1,fAng:.18,foils:0,foilLock:0,foilT:0,hull:100,shield:100,boost:100,thr:.5,spd:90,wave:1,kills:0,score:0,hit:0,fire:0,shake:0,next:0,roll:0,armed:Math.abs(mx)<.25&&Math.abs(my)<.25});S.vel.set(0,0,0);S.rate.set(0,0,0);
+ Object.assign(S,{inv:0,jumps:0,boss:null,ord:0,hs:null,jumpReady:false,sector:1,fAng:.18,foils:0,foilLock:0,foilT:0,hull:100,shield:100,boost:100,thr:.5,spd:90,wave:1,kills:0,score:0,hit:0,fire:0,shake:0,next:0,roll:0,armed:Math.abs(mx)<.25&&Math.abs(my)<.25});S.vel.set(0,0,0);S.rate.set(0,0,0);
  sx=sy=0;ship.p.set(...MAP.start);ship.q=new Q();rocks.forEach(r=>place(r,MAP.rk.lo,MAP.rk.hi));spawnWave()}
-function hurt(d){if(S.mode!=='play'||(S.hs&&S.hs.ph!=='exit'))return;S.hit=0;S.shake=Math.min(1,S.shake+d/25);$('flash').style.opacity=Math.min(1,d/15);setTimeout(()=>$('flash').style.opacity=0,120);
+function hurt(d){if(S.mode!=='play'||S.inv>0||(S.hs&&S.hs.ph!=='exit'))return;S.hit=0;S.shake=Math.min(1,S.shake+d/25);$('flash').style.opacity=Math.min(1,d/15);setTimeout(()=>$('flash').style.opacity=0,120);
  if(S.shield>0){const a=Math.min(S.shield,d);S.shield-=a;d-=a}S.hull-=d;
  if(S.hull<=0){S.hull=0;S.mode='over';explode(ship.p,260,160);S.orb=0;let nb=false;
   if(S.score>best){best=S.score;nb=true;try{localStorage.setItem('t65b-best',best)}catch(e){}}
   $('sum').textContent=`Wave ${S.wave}, ${S.kills} kills, ${S.score} points`+(nb?'. New best.':`. Best: ${best}.`);
-  setTimeout(()=>{if(document.exitPointerLock)document.exitPointerLock();$('over').hidden=false;$('hud').hidden=true;msg('')},1400)}}
+  setTimeout(()=>{if(document.exitPointerLock)document.exitPointerLock();$('over').hidden=false;$('hud').hidden=true;msg('');offerRevive()},1400)}}
 function killFoe(i){explode(foes[i].p,120,110);foes.splice(i,1);S.kills++;S.score+=100*S.wave}
-function launch(){audioInit();if(AC&&AC.state==='suspended')AC.resume();reset();foes.length=0;S.mode='play';S.paused=false;startHS(curMap,true);$('menu').hidden=$('over').hidden=true;$('hud').hidden=false;lockIt();
+function launch(){revReset();audioInit();if(AC&&AC.state==='suspended')AC.resume();reset();foes.length=0;S.mode='play';S.paused=false;startHS(curMap,true);$('menu').hidden=$('over').hidden=true;$('hud').hidden=false;lockIt();
  setTimeout(()=>{if(S.mode==='play'&&!locked&&!S.armed)msg('Move the cursor to the center to steer',3500)},400)}
 function toMenu(){vrLeave();if(document.exitPointerLock)document.exitPointerLock();S.mode='menu';S.paused=false;S.hs=null;$('hsb').hidden=$('hsk').hidden=$('jmp').hidden=true;foes.length=0;bolts.length=0;pl.fill(0);bombs.length=0;SD.length=0;DS=null;S.boss=null;$('over').hidden=true;$('menu').hidden=false;$('hud').hidden=true;msg('');applyMap(curMap)}
 $('tomenu').onclick=toMenu;
+/* ---------- tabs ---------- */
+const TABS=['Play','Cred','Priv'];
+function tab(n){TABS.forEach((k,i)=>{$('p'+k).hidden=i!==n;$('tab'+k).setAttribute('aria-pressed',i===n)})}
+TABS.forEach((k,i)=>{$('tab'+k).onclick=()=>tab(i)});
+/* ---------- optional rewarded ad: revive with all progress ---------- */
+const AD_DEMO=/X{6}/.test(document.querySelector('script[data-ad-client]')?.getAttribute('data-ad-client')||'XXXXXX'),MAX_REV=3;
+let revLeft=MAX_REV,adShow=null,adTimer=0;
+try{if(window.adConfig)adConfig({sound:'on',preloadAdBreaks:'on'})}catch(e){}
+function revReset(){revLeft=MAX_REV}
+function offerRevive(){const box=$('rev'),b=$('revive');adShow=null;
+ if(revLeft<=0){box.hidden=true;return}
+ box.hidden=false;$('revn').textContent='Keeps your wave, kills and score. Revives left: '+revLeft;
+ if(AD_DEMO||typeof window.adBreak!=='function'){b.disabled=false;b.textContent='Watch a short ad to revive';return}
+ let had=false,done=false;b.disabled=true;b.textContent='Finding an ad...';
+ const fail=m=>{if(done||S.mode!=='over'||adShow)return;b.disabled=false;b.textContent='Try again';$('revn').textContent=m};
+ setTimeout(()=>{if(!had)fail('No ad is available right now. Tap to try again.')},7000);
+ try{adBreak({type:'reward',name:'revive',
+  beforeReward:f=>{had=true;adShow=f;b.disabled=false;b.textContent='Watch a short ad to revive'},
+  adViewed:()=>{done=true;revive(false)},
+  adDismissed:()=>{$('revn').textContent='Watch the whole ad to earn your revive.'},
+  adBreakDone:()=>{if(done||S.mode!=='over')return;adShow=null;b.disabled=false;b.textContent='Try again';if(!had)$('revn').textContent='No ad is available right now. Tap to try again.'}})}
+ catch(e){fail('Ads are unavailable right now.')}}
+$('revive').onclick=()=>{const b=$('revive');if(b.disabled)return;
+ if(AD_DEMO||typeof window.adBreak!=='function')return demoAd();
+ if(adShow){const f=adShow;adShow=null;b.disabled=true;f()}else offerRevive()};
+function demoAd(){let t=15+(Math.random()*16|0);$('revive').disabled=true;$('adscr').hidden=false;$('adgo').hidden=true;
+ const tick=()=>{if(t>0){$('adt').textContent='Demo ad (test mode): '+t+'s left. Real ads appear once you add your AdSense ID.';t--}
+  else{clearInterval(adTimer);$('adt').textContent='Thanks for watching!';$('adgo').hidden=false}};
+ tick();adTimer=setInterval(tick,1000)}
+$('adgo').onclick=()=>{$('adscr').hidden=true;revive(true)};
+$('adx').onclick=()=>{clearInterval(adTimer);$('adscr').hidden=true;$('revive').disabled=false;$('revn').textContent='Watch the whole ad to earn your revive.'};
+function revive(gesture){if(S.mode!=='over'||revLeft<=0)return;revLeft--;
+ const B=S.boss;if(B&&B.fired){B.fired=0;B.laser=90;B.w30=B.w10=0}
+ for(let i=bolts.length-1;i>=0;i--)if(bolts[i].team===1)bolts.splice(i,1);
+ Object.assign(S,{mode:'play',hull:100,shield:100,boost:100,hit:0,inv:4,shake:0,fire:0,paused:false});
+ S.spd=Math.max(S.spd,110);S.thr=Math.max(S.thr,.5);S.rate.set(0,0,0);mdown=false;sx=sy=0;
+ $('over').hidden=true;$('adscr').hidden=true;$('hud').hidden=false;
+ if(gesture)lockIt();
+ if(!gesture&&!noLock&&!VR.on){S.paused=true;msg('Revived! Click to resume')}else msg('Revived! Shields up. Keep flying',3000)}
 $('go').onclick=launch;$('again').onclick=launch;
 let locked=false,noLock=false,sx=0,sy=0;
 const lockIt=()=>{try{const r=cv.requestPointerLock();if(r&&r.catch)r.catch(()=>{noLock=true})}catch(e){noLock=true}};
@@ -562,7 +629,7 @@ function update(dt){
   let tgt=40+S.thr*150;if((K.ShiftLeft||K.ShiftRight)&&S.boost>0){tgt*=1.8;S.boost=Math.max(0,S.boost-35*dt)}else S.boost=Math.min(100,S.boost+10*dt);
   S.spd+=(tgt-S.spd)*(1-Math.exp(-dt*1.6));fw=FWD.clone().rot(ship.q);S.vel.copy(fw).mul(S.spd);ship.p.addS(S.vel,dt);
   S.roll+=(-S.rate.y*.45-S.roll)*k;
-  S.hit+=dt;if(S.hit>3&&S.shield<100)S.shield=Math.min(100,S.shield+14*dt);
+  S.inv=Math.max(0,(S.inv||0)-dt);S.hit+=dt;if(S.hit>3&&S.shield<100)S.shield=Math.min(100,S.shield+14*dt);
   S.fire-=dt;
   const trig=K.Space||mdown;let near=false;for(const f of foes)if(f.p.dist(ship.p)<650){near=true;break}
   if(trig||S.foilLock)S.foilT=2.5;else if(near)S.foilT=Math.max(S.foilT,1);else S.foilT-=dt;S.foils=S.foilLock||S.foilT>0?1:0;
